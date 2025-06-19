@@ -39,10 +39,12 @@ class JsonHandler:
         self.branches = branches
         self.debug = False
     
+    def isEmpty(self): 
+        with open(self.filename, 'r') as f: 
+            return f.read().strip() == ""
+
     def setIfEmpty(self, d):
-        with open(self.filename, "r") as f:
-            if f.read().strip() == "":
-                self.set(d)
+        if self.isEmpty(): self.set(d)
 
     def get(self):
         with open(self.filename, "r") as f:
